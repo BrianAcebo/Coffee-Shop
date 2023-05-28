@@ -1,1 +1,68 @@
-<h1>Hello world!</h1>
+<video 
+    preload="metadata" 
+    playsinline="" 
+    autoplay 
+    loop 
+    controls 
+    id="vid" 
+    src="https://cdn.shopify.com/videos/c/o/v/17f7f12b0c69408f8dbe065daa032429.mp4" poster="https://cdn.shopify.com/s/files/1/0019/3039/5714/products/LEDBIKEMAIN.jpg?v=1668766490"
+></video>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    /* var vid = document.getElementById("vid");
+    vid.ontimeupdate = () => {
+        console.log(this.currentTime)
+        if (this.currentTime >= 5.0) {
+            this.currentTime = 0.0;
+        }
+    }
+    vid.addEventListener("timeupdate", () => {
+        console.log(this)
+        if (this.currentTime >= 5.0) {
+            this.currentTime = 0.0;
+        }
+    }); */
+
+    $(document).ready(function() {
+        $("video").each(function() {
+            var $video = $(this);
+            var $clone = $video.clone();
+            $video.after($clone);
+
+            var video = $video[0];
+            var clone = $clone[0];
+
+            clone.hidden = true;
+            clone.pause();
+            clone.currentTime = 0;
+
+            video.ontimeupdate = function() {
+                /* if (video.currentTime >= video.duration - .5) {
+                    clone.play();
+                    video.hidden = true;
+                    clone.hidden = false;
+                    video.pause();
+                    video.currentTime = 0;
+                } */
+
+                console.log(video.duration, video.currentTime)
+
+                if (video.currentTime >= video.duration - 0.5) {
+                    video.currentTime = 0;
+                }
+            }
+
+            /* clone.ontimeupdate = function() {
+                if (clone.currentTime >= clone.duration - .5) {
+                    video.play();
+                    clone.hidden = true;
+                    video.hidden = false;
+                    clone.pause();
+                    clone.currentTime = 0;
+                }
+            } */
+
+        });
+    });
+</script>

@@ -15,5 +15,8 @@ app.get("/", (req, res) => {
     res.render("index")
 })
 
+
 // Port listener and hot reloading
-app.listen(3000)
+app.listen(3000, () => {
+    console.log("Running on port: 3000");
+})
